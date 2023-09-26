@@ -1,0 +1,28 @@
+{
+  "name": "qlns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/app.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.22.20",
+    "body-parser": "^1.20.2",
+    "bootstrap-icons": "^1.11.1",
+    "dotenv": "^16.3.1",
+    "ejs": "~3.1.9",
+    "express": "~4.16.1",
+    "mysql2": "^3.6.1",
+    "nodemon": "^3.0.1",
+    "sequelize": "^6.11.0"
+  },
+  "author": "datpham",
+  "license": "ISC",
+  "devDependencies": {
+    "sequelize-cli": "^6.6.1"
+  }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        QLNS
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="appname col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                <h3>QUẢN LÝ NHÂN SỰ</h3>
+            </div>
+            <div class="row header-top">
+
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                    <div class="container-fluid">
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Chức Năng
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="departments">Phòng ban</a></li>
+                                        <li><a class="dropdown-item" href="#">Nhân sự</a></li>
+                                        <li><a class="dropdown-item" href="#">Tính công</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Thoát</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+        </header>
+        <main class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+            <div class="title-funtion">
+                Danh sách nhân viên theo phòng ban:
+            </div>
+
+            <% for (const phong_ban in dsphongban) { %>
+
+
+                <div class="wrap-pb">
+                    <h2>
+                        Phòng: <%= phong_ban %>
+                    </h2>
+                    <p>Số nhân sự nam: <%= dsphongban[phong_ban].namCount %>
+                    </p>
+                    <p>Số nhân sự nữ: <%= dsphongban[phong_ban].nuCount %>
+                    </p>
+                    <p>Tổng nhân sự: <%= dsphongban[phong_ban].pbCount %>
+                    </p>
+                    <button class="toggleButton btn btn-link">
+                        <i class="bi <%= phong_ban.hidden ? 'bi-eye' : 'bi-eye-slash' %>"></i>
+                    </button>
+                    <table class="table table-striped" <%=phong_ban.hidden ? 'hidden' : '' %> style="max-width: 100%;">
+
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">#</th>
+                                <th scope="col">Mã Nhân Viên</th>
+                                <th scope="col">Họ Tên</th>
+                                <th scope="col">Giới Tính</th>
+                                <th scope="col">Tuổi</th>
+                                <th scope="col">Phòng Ban</th>
+                                <th scope="col">Địa Chỉ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% for (let i=0; i < dsphongban[phong_ban].pb.length; i++) { %>
+
+                                <tr>
+                                    <th scope="row">
+                                        <%= i + 1 %>
+                                    </th>
+
+                                    <td>
+                                        <%= dsphongban[phong_ban].pb[i].id %>
+                                    </td>
+                                    <td>
+                                        <%= dsphongban[phong_ban].pb[i].ho_ten %>
+                                    </td>
+                                    <td>
+                                        <%= dsphongban[phong_ban].pb[i].gioi_tinh %>
+                                    </td>
+                                    <td>
+                                        <%= dsphongban[phong_ban].pb[i].tuoi %>
+                                    </td>
+                                    <td>
+                                        <%= dsphongban[phong_ban].pb[i].phong_ban %>
+                                    </td>
+                                    <td>
+                                        <%= dsphongban[phong_ban].pb[i].dia_chi %>
+                                    </td>
+                                </tr>
+                                <% } %>
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <% } %>
+        </main>
+        <footer>
+
+        </footer>
+        <script>
+            // Lấy tất cả các nút "Ẩn/Hiện" và các phần tử <div> tương ứng
+            const toggleButtons = document.querySelectorAll('.toggleButton');
+            const wrapPbs = document.querySelectorAll('.table');
+
+            // Thêm sự kiện click cho từng nút "Ẩn/Hiện"
+            toggleButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    // Đảo ngược trạng thái hiện tại của phần tử <div>
+                    wrapPbs[index].classList.toggle('hidden');
+                    // Đảo ngược biểu tượng (icon) trên nút
+                    const icon = button.querySelector('i.bi');
+                    icon.classList.toggle('bi-eye');
+                    icon.classList.toggle('bi-eye-slash');
+                });
+            });
+
+        </script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</body>
+</div>
+
+</html>

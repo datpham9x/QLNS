@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightgray;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.appname {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.container {
+  background-color: white;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.wrap-pb {
+  border-top: dashed;
+  border-width: 1px;
+  border-color: rgb(80, 80, 80);
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.wrap-pb h2 {
+  font-size: 13pt;
+  font-weight: 600;
+}
+
+.title-funtion {
+  margin-top: 2rem;
+  font-size: 13pt;
+  font-weight: 600;
+
+}
+
+.hidden {
+  display: none;
+}
