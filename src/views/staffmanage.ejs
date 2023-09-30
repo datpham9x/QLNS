@@ -42,7 +42,7 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="staffmanage">Quản lý nhân sự</a></li>
                     <li><a class="dropdown-item" href="departments">Quản lý phòng ban</a></li>
-                    <li><a class="dropdown-item" href="salary">Quản lý lương</a></li>
+                    <li><a class="dropdown-item" href="#">Quản lý lương</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
@@ -60,6 +60,64 @@
 
       </div>
     </header>
+    <main class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <div class="title-funtion">
+            Danh sách nhân viên:
+        </div>
+        
+            <div class="wrap-pb">
+
+              <a href="newstaff" class="btn btn-secondary">Thêm mới</a>
+                
+                <table class="table table-striped mt-2" style="max-width: 100%;">
+
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">#</th>
+                            <th scope="col">Mã Nhân Viên</th>
+                            <th scope="col">Họ Tên</th>
+                            <th scope="col">Giới Tính</th>
+                            <th scope="col">Tuổi</th>
+                            <th scope="col">Phòng Ban</th>
+                            <th scope="col">Địa Chỉ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% for (let i=0; i < staff.length; i++) { %>
+
+                            <tr>
+                                <th scope="row">
+                                    <%= i + 1 %>
+                                </th>
+
+                                <td>
+                                    <%= staff[i].id %>
+                                </td>
+                                <td>
+                                  <%= staff[i].ho_ten %>
+                                </td>
+                                <td>
+                                  <%= staff[i].gioi_tinh %>
+                                </td>
+                                <td>
+                                  <%= staff[i].tuoi %>
+                                </td>
+                                <td>
+                                  <%= staff[i].phong_ban %>
+                                </td>
+                                <td>
+                                  <%= staff[i].dia_chi %>
+                                </td>
+                            </tr>
+                            <% } %>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+    </main>
 
     <footer>
 

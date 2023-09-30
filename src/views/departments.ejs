@@ -96,7 +96,8 @@
                         </thead>
                         <tbody>
 
-                            <% for (let i=0; i < dsphongban[phong_ban].pb.length; i++) { %>
+
+                            <% for (let i=(currentPage - 1) * 2; i < Math.min(currentPage * 2, dsphongban[phong_ban].pb.length); i++) { %>
 
                                 <tr>
                                     <th scope="row">
@@ -125,8 +126,14 @@
                                 <% } %>
 
                         </tbody>
-
+                        
                     </table>
+                    <% if (currentPage > 1) { %>
+                        <a href="/departments?page=<%= currentPage - 1 %>">Previous</a>
+                    <% } %>
+                    <% if (currentPage * 2 < dsphongban[phong_ban].pb.length) { %>
+                        <a href="/departments?page=<%= currentPage + 1 %>">Next</a>
+                    <% } %>
                 </div>
                 <% } %>
         </main>
@@ -134,11 +141,10 @@
 
         </footer>
         <script>
-            // Lấy tất cả các nút "Ẩn/Hiện" và các phần tử <div> tương ứng
+
             const toggleButtons = document.querySelectorAll('.toggleButton');
             const wrapPbs = document.querySelectorAll('.table');
 
-            // Thêm sự kiện click cho từng nút "Ẩn/Hiện"
             toggleButtons.forEach((button, index) => {
                 button.addEventListener('click', () => {
                     // Đảo ngược trạng thái hiện tại của phần tử <div>

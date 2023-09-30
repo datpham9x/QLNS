@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding-top: 2rem;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: lightgray;
 }
@@ -20,7 +20,7 @@ a {
 }
 
 .wrap-pb {
-  border-top: dashed;
+  border-top: solid;
   border-width: 1px;
   border-color: rgb(80, 80, 80);
   margin-top: 2rem;

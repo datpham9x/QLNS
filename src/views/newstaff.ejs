@@ -40,9 +40,9 @@
                     Chức Năng
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="staffmanage">Quản lý nhân sự</a></li>
+                    <li><a class="dropdown-item" href="#">Quản lý nhân sự</a></li>
                     <li><a class="dropdown-item" href="departments">Quản lý phòng ban</a></li>
-                    <li><a class="dropdown-item" href="salary">Quản lý lương</a></li>
+                    <li><a class="dropdown-item" href="#">Quản lý lương</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
@@ -60,6 +60,44 @@
 
       </div>
     </header>
+    <main class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <div class="title-funtion">
+            Thêm nhân viên
+        </div>
+        <form action="/postnewstaff" method="post" class="row g-3 mt-3">
+            <div class="col-md-4">
+                <label for="id" class="form-label">Mã Nhân Viên</label>
+                <input type="text" class="form-control" id="id" name="id">
+              </div>
+            <div class="col-md-12">
+              <label for="ho_ten" class="form-label">Họ Tên</label>
+              <input type="text" class="form-control" id="ho_ten" name="ho_ten">
+            </div>
+            <div class="col-md-6">
+              <label for="tuoi" class="form-label">Tuổi</label>
+              <input type="text" class="form-control" id="tuoi" name="tuoi">
+            </div>
+            <div class="col-md-6">
+                <label for="gioi_tinh" class="form-label">Giới Tính</label>
+                <select id="gioi_tinh" name="gioi_tinh" class="form-select">
+                  <option selected>Nam</option>
+                  <option>Nữ</option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="phong_ban" class="form-label">Phòng Ban</label>
+              <input type="text" class="form-control" id="phong_ban" name="phong_ban">
+            </div>
+            <div class="col-md-12">
+              <label for="dia_chi" class="form-label">Địa Chỉ</label>
+              <input type="text" class="form-control" id="dia_chi" name="dia_chi">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Thêm</button>
+              <button type="reset" class="btn btn-primary">Xóa tất cả</button>
+            </div>
+          </form>
+    </main>
 
     <footer>
 

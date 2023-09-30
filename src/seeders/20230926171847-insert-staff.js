@@ -9,7 +9,9 @@ module.exports = {
     gioi_tinh: "Nữ",
     tuoi: 29,
     phong_ban: "Kế Toán",
-    dia_chi: "Quận 7, HCM"
+    dia_chi: "Quận 7, HCM",
+    createdAt: new Date(),
+    updatedAt: new Date()
   }]);
   },
   
