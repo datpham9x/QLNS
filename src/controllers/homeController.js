@@ -63,8 +63,14 @@ let getDepartment = async (req, res) => {
 
 let getStaffManage = async (req, res) => {
     try {
-        let staff = await db.Staff.findAll();
+        if (req.session.logged) {
+            let staff = await db.Staff.findAll();
         return res.render('staffmanage', { staff: staff });
+        }else {
+            req.session.back="staffmanage";
+            res.redirect('login');
+        }
+        
     } catch (e) {
         console.log(e)
     }
@@ -88,11 +94,77 @@ let postNewStaff = async (req, res) => {
     }
 }
 
+let getLogin = (req, res) => {
+    let noti = null;
+    try {
+        return res.render('login', {noti: noti});
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+let postLogin = async (req, res) => {
+    let noti = null;
+
+    try {
+        let message = await staffManageService.loginToHome(req.body);
+        console.log(message);
+        if (message == 1) {
+            var session = req.session;
+                session.logged = true;
+                session.username = req.body.username;
+                if (session.back){ 
+                    console.log(session.back);
+                    res.redirect(session.back);
+                }
+                else {
+                    res.redirect("/");
+                }
+        //return res.redirect('/');    
+        }else {
+            noti = "Username hoặc Password không đúng!";
+            return res.render('login', {noti: noti});
+        }   
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+let getNewAccount = (req, res) => {
+    try {
+        return res.render('newAccount');
+    } catch (e) {
+        console.log(e)
+    }
+
+}
+
+
+let postNewAccount = async (req, res) => {
+    try {
+        let message = await staffManageService.createAccount(req.body);
+        console.log(message);
+        return res.send('Thêm tài khoản thành công');
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+let getQuit = (req, res) => {
+        req.session.destroy();
+        res.redirect('login');
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
     getDepartment: getDepartment,
     getNewStaff: getNewStaff,
     getStaffManage: getStaffManage,
-    postNewStaff: postNewStaff
+    postNewStaff: postNewStaff,
+    getLogin: getLogin,
+    postLogin: postLogin,
+    getNewAccount: getNewAccount,
+    postNewAccount: postNewAccount,
+    getQuit: getQuit
 }
