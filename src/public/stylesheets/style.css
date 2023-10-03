@@ -42,3 +42,14 @@ a {
 .hidden {
   display: none;
 }
+
+.btn-manage-staff{
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+}
+
+.staff-table{
+  vertical-align: middle;
+}

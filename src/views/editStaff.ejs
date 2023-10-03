@@ -61,25 +61,46 @@
 
       </div>
     </header>
-    <main class="col-lg-4 offset-lg-4 col-md-4 offset-md-4">
-        <div class="title-funtion text-center">
-            Thêm tài khoản
+    <main class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <div class="title-funtion">
+            Cập nhật thông tin
         </div>
-        <form action="/postNewAccount" method="post" class="row g-3 mt-3">
-            <div class="col-10 offset-md-1">
+        <form action="/putEditStaff" method="post" class="row g-3 mt-3">
+            <div class="col-md-4">
                 <label for="id" class="form-label">Mã Nhân Viên</label>
-                <input type="text" class="form-control" id="id" name="id">
+                <input type="text" class="form-control" id="id" name="id" value="<%= staff.id %>">
               </div>
-            <div class="col-10 offset-md-1">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="ho_ten" name="username">
+            <div class="col-md-12">
+              <label for="ho_ten" class="form-label">Họ Tên</label>
+              <input type="text" class="form-control" id="ho_ten" name="ho_ten" value="<%= staff.ho_ten %>">
             </div>
-            <div class="col-10 offset-md-1">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="tuoi" name="password">
+            <div class="col-md-6">
+              <label for="tuoi" class="form-label">Tuổi</label>
+              <input type="text" class="form-control" id="tuoi" name="tuoi" value="<%= staff.tuoi %>">
             </div>
-            <div class="col-10 offset-md-1">
-              <button type="submit" class="btn btn-primary">Thêm</button>
+            <div class="col-md-6">
+                <label for="gioi_tinh" class="form-label">Giới Tính</label>
+                <select id="gioi_tinh" name="gioi_tinh" class="form-select" value="<%= staff.gioi_tinh %>">
+                  <option selected><%= staff.gioi_tinh %></option>
+                  <option><% if (staff.gioi_tinh == "Nam") { %>
+                    Nữ
+                    <% } else {%>
+                    Nam
+                    <% } %>
+                  </option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="phong_ban" class="form-label">Phòng Ban</label>
+              <input type="text" class="form-control" id="phong_ban" name="phong_ban" value="<%= staff.phong_ban %>">
+            </div>
+            <div class="col-md-12">
+              <label for="dia_chi" class="form-label">Địa Chỉ</label>
+              <input type="text" class="form-control" id="dia_chi" name="dia_chi" value="<%= staff.dia_chi %>">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Cập nhật</button>
+              <button type="reset" class="btn btn-primary">Xóa tất cả</button>
             </div>
           </form>
     </main>

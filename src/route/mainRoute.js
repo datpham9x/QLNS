@@ -18,6 +18,8 @@ let initWebRoutes = (app) => {
   router.get('/newAccount', homeController.getNewAccount);
   router.post('/postNewAccount', homeController.postNewAccount);
   router.get('/quit', homeController.getQuit);
+  router.get('/editStaff', homeController.getEditStaff);
+  router.post('/putEditStaff', homeController.putEditStaff);
 
 
   return app.use("/",router);
