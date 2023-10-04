@@ -20,6 +20,7 @@ let initWebRoutes = (app) => {
   router.get('/quit', homeController.getQuit);
   router.get('/editStaff', homeController.getEditStaff);
   router.post('/putEditStaff', homeController.putEditStaff);
+  router.get('/deleteStaff', homeController.putDeleteStaff);
 
 
   return app.use("/",router);

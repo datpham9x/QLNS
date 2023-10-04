@@ -18,7 +18,8 @@ let createNewStaff = async (staff) => {
 
             })
 
-            resolve('Thêm nhân viên mới thành công!')
+           let allStaffs = await db.Staff.findAll();
+            resolve(allStaffs)
 
         } catch (e) {
             reject(e);
@@ -125,9 +126,31 @@ let updateStaff = (staff) => {
             } else {
                 reslove()
             }
+        } catch (e) {
+            reject(e)
+        }
+    })
 
+}
 
+let deleteStaff = (userID) => {
 
+    return new Promise(async (reslove, reject) => {
+        try {
+
+            let staffDelete = await db.Staff.findOne({
+                where: { id: userID }
+            })
+
+            if (staffDelete) {   
+
+                await staffDelete.destroy();
+
+                let allStaffs = await db.Staff.findAll();
+                reslove(allStaffs)
+            } else {
+                reslove()
+            }
         } catch (e) {
             reject(e)
         }
@@ -140,5 +163,6 @@ module.exports = {
     loginToHome: loginToHome,
     createAccount: createAccount,
     findOneStaff: findOneStaff,
-    updateStaff: updateStaff
+    updateStaff: updateStaff,
+    deleteStaff: deleteStaff
 }

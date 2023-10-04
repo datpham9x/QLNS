@@ -7,20 +7,20 @@
   <title>
     QLNS
   </title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-xl" style="opacity: 0.95;">
     <header>
       <div class="appname col-md-6 offset-md-3">
         <h3>QUẢN LÝ NHÂN SỰ</h3>
       </div>
       <div class="row header-top">
 
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-expand-lg narbar-light bg-info">
           <div class="container-fluid">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -43,6 +43,7 @@
                     <li><a class="dropdown-item" href="staffmanage">Quản lý nhân sự</a></li>
                     <li><a class="dropdown-item" href="departments">Quản lý phòng ban</a></li>
                     <li><a class="dropdown-item" href="slary">Quản lý lương</a></li>
+                    <li><a class="dropdown-item" href="newAccount">Thêm tài khoản</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
@@ -60,19 +61,19 @@
 
       </div>
     </header>
-    <main class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+    <main class="col-lg-12 col-md-12">
         <div class="title-funtion">
             Danh sách nhân viên:
         </div>
         
             <div class="wrap-pb">
 
-              <a href="newstaff" class="btn btn-secondary">Thêm mới</a>
-                
-                <table class="table table-striped mt-2 staff-table" style="max-width: 100%;">
+              <a href="newstaff" class="btn btn-primary">Thêm mới</a>
+                <div class="border-staff-table">
+                <table class="table table-striped table-info staff-table" style="max-width: 100%;">
 
                     <thead>
-                        <tr class="table-primary">
+                        <tr class="table-secondary">
                             <th scope="col"></th>
                             <th scope="col">#</th>
                             <th scope="col">ID</th>
@@ -81,7 +82,7 @@
                             <th scope="col">Tuổi</th>
                             <th scope="col">Phòng Ban</th>
                             <th scope="col">Địa Chỉ</th>
-                            <th scope="col">P</th>
+                            <th scope="col" style="text-align: center;">---</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,8 +115,9 @@
                                 <td>
                                   <%= staff[i].dia_chi %>
                                 </td>
-                                <td>
-                                  <a href="editStaff?id=<%= staff[i].id %>" class="btn btn-manage-staff btn-warning">Sửa</a> <a href="deleteStaff" class="btn btn-manage-staff btn-danger">Xóa</a>
+                                <td style="text-align: center;">
+                                  <a href="editStaff?id=<%= staff[i].id %>" class="btn btn-manage-staff btn-warning"><i class="bi bi-pen"></i></a>
+                                  <a href="deleteStaff?id=<%= staff[i].id %>" class="btn btn-manage-staff btn-danger deleteText" data-confirm="Xóa nhân sự <%= staff[i].ho_ten %>, mã nhân viên <%= staff[i].id %> ?"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                             <% } %>
@@ -123,17 +125,25 @@
                     </tbody>
 
                 </table>
+              </div>
             </div>
 
     </main>
+    <!-- <script>
+      $(document).on("click", "a.deleteText", function() {
+    if (confirm('Are you sure ?')) {
+        $(this).prev('span.text').remove();
+    }
+});
+    </script> -->
 
     <footer>
 
     </footer>
+    <script src="/javascripts/confirm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </body>

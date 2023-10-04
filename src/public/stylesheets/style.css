@@ -2,11 +2,12 @@ body {
   padding-top: 2rem;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: lightgray;
+  background-image:url(/images/login_background.jpg);
 }
 
-a {
+/* a {
   color: #00B7FF;
-}
+} */
 
 .appname {
   text-align: center;
@@ -17,6 +18,16 @@ a {
   background-color: white;
   padding-bottom: 2rem;
   padding-top: 2rem;
+  border-radius: 10px;
+  
+}
+
+.container-xl {
+  background-color: white;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  border-radius: 10px;
+  
 }
 
 .wrap-pb {
@@ -52,4 +63,24 @@ a {
 
 .staff-table{
   vertical-align: middle;
+  margin: 0;
+  
+}
+
+.border-staff-table{
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+
+.login-page{
+  padding: 2rem;
+  background-color: white;
+  border-radius: 7px;
+  margin-top: 5rem;
+  border: solid 3px;
+  border-color: cyan;
+  opacity: 0.9;
 }

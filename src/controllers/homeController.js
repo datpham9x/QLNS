@@ -86,9 +86,9 @@ let getNewStaff = async (req, res) => {
 
 let postNewStaff = async (req, res) => {
     try {
-        let message = await staffManageService.createNewStaff(req.body);
-        console.log(message);
-        return res.send('Thêm nhân viên mới thành công');
+        let allStaffs = await staffManageService.createNewStaff(req.body);
+
+        return res.render('staffmanage', {staff: allStaffs});
     } catch (e) {
         console.log(e)
     }
@@ -180,6 +180,21 @@ let putEditStaff = async (req, res) => {
 
 }
 
+
+let putDeleteStaff = async (req, res) => {
+
+    try {
+        let userID = req.query.id;
+        console.log(userID)
+        let allStaffs = await staffManageService.deleteStaff(userID);
+        return res.render('staffmanage', { staff: allStaffs });
+    } catch (e) {
+        console.log(e)
+
+    }
+
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getDepartment: getDepartment,
@@ -192,5 +207,6 @@ module.exports = {
     postNewAccount: postNewAccount,
     getQuit: getQuit,
     getEditStaff: getEditStaff,
-    putEditStaff: putEditStaff
+    putEditStaff: putEditStaff,
+    putDeleteStaff: putDeleteStaff
 }
