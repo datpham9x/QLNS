@@ -60,10 +60,8 @@ let loginToHome = async (account) => {
 
         try {
 
-            //let hashPass = await hashPassword(account.password);
             let user = await db.Account.findOne({
 
-                //where: { username: account.username, password: hashPass}
                 where: { username: account.username }
 
             })

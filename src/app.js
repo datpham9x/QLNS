@@ -17,19 +17,10 @@ app.use(session({
   secret: 'abcdefg',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 6000000 }
 }));
 
 initWebRoutes(app);
-
-//
-app.use(session({
-  secret: 'abcdefg',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000 }
-}));
-
 
 app.use(express.json());
 
@@ -41,4 +32,4 @@ app.listen(port, () => {
   console.log(`App listening at port:${port}`)
 })
 
-//module.exports = app;
+module.exports = app;

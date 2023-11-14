@@ -42,7 +42,7 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="staffmanage">Quản lý nhân sự</a></li>
                     <li><a class="dropdown-item" href="departments">Quản lý phòng ban</a></li>
-                    <li><a class="dropdown-item" href="slary">Quản lý lương</a></li>
+                    <li><a class="dropdown-item" href="salary">Quản lý lương</a></li>
                     <li><a class="dropdown-item" href="newAccount">Thêm tài khoản</a></li>
                     <li>
                       <hr class="dropdown-divider">
@@ -91,7 +91,7 @@
 
                             <tr>
                               <th>
-                                <input type="checkbox">
+                                <input type="checkbox" class="checkbox" data-target="div-edit-<%= i %>">
                             </th>
                                 <th scope="row">
                                     <%= i + 1 %>
@@ -116,8 +116,10 @@
                                   <%= staff[i].dia_chi %>
                                 </td>
                                 <td style="text-align: center;">
+                                  <div id="div-edit-<%= i %>" style="visibility: hidden; width: 100%;" class="show-edit">
                                   <a href="editStaff?id=<%= staff[i].id %>" class="btn btn-manage-staff btn-warning"><i class="bi bi-pen"></i></a>
                                   <a href="deleteStaff?id=<%= staff[i].id %>" class="btn btn-manage-staff btn-danger deleteText" data-confirm="Xóa nhân sự <%= staff[i].ho_ten %>, mã nhân viên <%= staff[i].id %> ?"><i class="bi bi-trash"></i></a>
+                                  </div>
                                 </td>
                             </tr>
                             <% } %>
@@ -129,13 +131,22 @@
             </div>
 
     </main>
-    <!-- <script>
-      $(document).on("click", "a.deleteText", function() {
-    if (confirm('Are you sure ?')) {
-        $(this).prev('span.text').remove();
-    }
-});
-    </script> -->
+    <script>
+      const checkboxes = document.querySelectorAll('.checkbox');
+  
+      checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener('change', function () {
+              const targetId = this.getAttribute('data-target');
+              const targetDiv = document.getElementById(targetId);
+  
+              if (this.checked) {
+                  targetDiv.style.visibility = 'visible';
+              } else {
+                  targetDiv.style.visibility = 'hidden';
+              }
+          });
+      });
+    </script>
 
     <footer>
 

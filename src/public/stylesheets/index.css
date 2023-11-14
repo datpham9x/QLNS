@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+body{
+    background-color: #010302;
+    margin :0;
+    font-family: 'Josefin Sans', sans-serif;    font-size: 15px;
+    overflow-x: hidden;
+}
+        /* Custom CSS for the navigation menu */
+        .navbar {
+            background-color: #007bff; /* Màu nền của menu */
+        }
+
+        .navbar-nav .nav-item {
+            padding: 0 15px; /* Khoảng cách giữa các mục menu */
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* Màu chữ của các mục menu */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107; /* Màu chữ khi di chuột qua các mục menu */
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            background-color: #007bff;
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: #fff;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #0056b3;
+        }
+
+        /* Custom CSS for horizontal menu */
+        .horizontal-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .horizontal-menu .dropdown-menu {
+            position: absolute;
+            background-color: #007bff;
+            top: 100%;
+            left: 0;
+            display: none;
+        }
+
+        .horizontal-menu:hover .dropdown-menu {
+            display: block;
+        }
+    button{
+        padding: 5px 20px;
+        border: 1px solid #b21065;
+        border-radius: 20px;
+        background-image: 
+            linear-gradient(to bottom, #fff9, transparent 50% 90%, #f5cbbc99), 
+            repeating-linear-gradient(60deg,#bc058255 0 10px, transparent 10px 20px), 
+            linear-gradient(to bottom, #EF08A6, #ee6c8f);
+        color: #fff;
+        font-family: monospace;
+        font-weight: bold;
+        text-shadow: 0 1px 0 #efb7de;
+        box-shadow: 
+            0 10px 0 #0005,
+            0 5px 0 #BD1360,
+            0 4px 0 7px #fff,
+            0 0 30px 10px #e260ae;
+        transition: 0.5s;
+    }
+    button:active{
+        box-shadow: 
+            0 0px 0 #0005,
+            0 0px 0 #BD1360,
+            0 0px 0 7px #fff,
+            0 0 30px 30px #e260ae;
+        transform: translateY(5px);
+    }
+*::-webkit-scrollbar{
+    width: 0;
+}
+.container{
+    overflow: hidden;
+    height: max-content;
+
+}
+
+.banner{
+    height: 50vw;
+    position: relative;
+    overflow: hidden;
+}
+.banner .bg{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    background-position: center bottom;
+    transition: 0.1s;
+}
+.banner .bg:nth-child(1){
+    background-image: url(/images/banner_0.png);
+}
+.banner .bg:nth-child(2){
+    background-image: url(/images/banner_1.png);
+}
+.banner .bg:nth-child(3){
+    top: 32%;
+    text-align: center;
+} 
+.banner .bg:nth-child(3) h1, 
+.banner .bg:nth-child(3) h5
+{
+    color: #d1c3ae;
+    font-size: 50px;
+    margin: 0;
+    text-shadow: 0 0px 20px #d2af76;
+}
+.banner .bg:nth-child(3) h1
+{
+    font-size: 11vw;
+}
+.banner .bg:nth-child(4){
+    background-image: url(/images/banner_2.png);
+}
+.banner .bg:nth-child(5){
+    background-image: url(/images/banner_3.png);
+}
+.tab{
+    min-height: 100vh;
+    background-color: #010302;
+    z-index: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.tab::before{
+    position: absolute;
+    height: 200px;
+    width: 100vw;
+    background: linear-gradient(
+        to top, #010302, transparent
+    );
+    content: '';
+    bottom: 100%;
+    left: 0;
+}
+.tab.tab1{
+    background:linear-gradient(
+        to top, #010302 0%, transparent 20% , #010302 80%
+   ),url(/images/tab1.jpg);
+}
+.tab.tab2{
+    background:linear-gradient(
+        to top, #010302 0%, transparent 20% , #010302 80%
+   ),url(/images/tab2.jpg);
+}
+.tab.tab1 .content{
+    width: 700px;
+    max-width: 90%;
+    color: #eee;
+}
+.tab.tab2 .content{
+    color: #eee;
+    width: 900px;
+    max-width: 90%;
+}
+.tab.tab2 .content .des{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}

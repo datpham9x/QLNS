@@ -12,6 +12,7 @@ let initWebRoutes = (app) => {
   router.get('/departments', homeController.getDepartment);
   router.get('/newstaff', homeController.getNewStaff);
   router.get('/staffmanage', homeController.getStaffManage);
+  router.get('/salary', homeController.getSalary);
   router.post('/postnewstaff', homeController.postNewStaff);
   router.post('/postLogin', homeController.postLogin);
   router.get('/login', homeController.getLogin);
@@ -21,6 +22,8 @@ let initWebRoutes = (app) => {
   router.get('/editStaff', homeController.getEditStaff);
   router.post('/putEditStaff', homeController.putEditStaff);
   router.get('/deleteStaff', homeController.putDeleteStaff);
+  router.get('/cacl-workday', homeController.getCaclWorkday);
+  router.post('/luu-cong', homeController.putEditWorkDay);
 
 
   return app.use("/",router);

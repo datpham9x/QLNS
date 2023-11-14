@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        QLNS
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+   <!-- Thêm các liên kết tới Bootstrap và Datepicker CSS và JS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="appname col-md-6 offset-md-3">
+                <h3>QUẢN LÝ NHÂN SỰ</h3>
+            </div>
+            <div class="row header-top">
+
+                <nav class="navbar navbar-expand-lg narbar-light bg-info">
+                    <div class="container-fluid">
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Chức Năng
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="staffmanage">Quản lý nhân sự</a></li>
+                                        <li><a class="dropdown-item" href="departments">Quản lý phòng ban</a></li>
+                                        <li><a class="dropdown-item" href="salary">Quản lý lương</a></li>
+                                        <li><a class="dropdown-item" href="newAccount">Thêm tài khoản</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="quit">Thoát</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+        </header>
+        <main class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+
+            <div class="title-funtion">
+                Tính Lương:
+            </div>
+    
+            <div class="input-group date mt-3">
+                <form method="GET" action="/cacl-workday">
+                    Tháng/Năm:  <input type="text" id="datepicker" class="form-control" name="monthYear" title="Tháng/Năm">
+                    Mã nhân viên: <input type="text" id="manhanvien" class="form-control" name="manhanvien" title="Mã nhân viên">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary mt-2" type="button" id="selectMonthYear">Chọn</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- JavaScript để xử lý sự kiện và tạo lịch công -->
+            <script>
+                $(document).ready(function () {
+                    // Khởi tạo Bootstrap Datepicker chỉ cho phép chọn tháng và năm
+                    $('#datepicker').datepicker({
+                        format: 'mm-yyyy',
+                        startView: 'months',
+                        minViewMode: 'months',
+                        autoclose: true
+                    });
+            
+                    // Xử lý sự kiện khi người dùng nhấn nút "Chọn"
+                    $('#selectMonthYear').click(function () {
+                        // Lấy giá trị tháng và năm từ datepicker
+                        const selectedDate = $('#datepicker').val();
+                        const [month, year] = selectedDate.split('-');
+                        
+                        // Lấy giá trị mã nhân viên
+                        const manhanvien = $('#manhanvien').val();
+            
+                        // Tạo URL với thông tin tháng, năm và mã nhân viên
+                        const url = `/cacl-workday?month=${month}&year=${year}&manhanvien=${manhanvien}`;
+            
+                        // Chuyển hướng đến URL đã tạo
+                        window.location.href = url;
+                    });
+                });
+            </script>
+            
+       
+
+        </main>
+
+        <footer>
+
+        </footer>
+        <!-- <script src="/javascripts/salary-calendar.js"> -->
+        </script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+        
+</body>
+</div>
+
+</html>
