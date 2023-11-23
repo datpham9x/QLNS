@@ -52,8 +52,8 @@
                 </li>
               </ul>
               <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" id="employeeId" name="employeeId" type="search" placeholder="Search By ID" aria-label="Search">
+                <button class="btn btn-outline-success" type="button" onclick="searchEmployee()">Search</button>
               </form>
             </div>
           </div>
@@ -67,6 +67,14 @@
         </div>
         
             <div class="wrap-pb">
+
+              <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div id="employeeInfo"></div>
+      </div>
+  </div>
 
               <a href="newstaff" class="btn btn-primary">Thêm mới</a>
                 <div class="border-staff-table">
@@ -87,7 +95,7 @@
                     </thead>
                     <tbody>
 
-                        <% for (let i=0; i < staff.length; i++) { %>
+                      <% for (let i=(currentPage - 1) * 5; i < Math.min(currentPage * 5, staff.length); i++) { %>
 
                             <tr>
                               <th>
@@ -127,6 +135,13 @@
                     </tbody>
 
                 </table>
+                <br>
+                <% if (currentPage > 1) { %>
+                  <a href="/staffmanage?page=<%= currentPage - 1 %>">Previous</a>
+              <% } %>
+              <% if (currentPage * 5 < staff.length) { %>
+                  <a href="/staffmanage?page=<%= currentPage + 1 %>">Next</a>
+              <% } %>
               </div>
             </div>
 
@@ -147,6 +162,40 @@
           });
       });
     </script>
+
+<script>
+  function searchEmployee() {
+      const employeeId = document.getElementById('employeeId').value;
+
+      // Make a request to the server to search for the employee
+      // Gọi API để tìm kiếm nhân viên
+      fetch(`/search?employeeId=${employeeId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        // Hiển thị thông tin nhân viên trong modal
+                        document.getElementById('employeeInfo').innerHTML = `
+                            <p><strong>ID:</strong> ${data.id}</p>
+                            <p><strong>Họ Tên:</strong> ${data.ho_ten}</p>
+                            <p><strong>Giới Tính:</strong> ${data.gioi_tinh}</p>
+                            <p><strong>Tuổi:</strong> ${data.tuoi}</p>
+                            <p><strong>Phòng Ban:</strong> ${data.phong_ban}</p>
+                            <p><strong>Địa Chỉ:</strong> ${data.dia_chi}</p>
+                        `;
+                        document.getElementById('myModal').style.display = 'block';
+                    } else {
+                        alert('Không tìm thấy nhân viên.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi khi tìm kiếm nhân viên:', error);
+                });
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+</script>
 
     <footer>
 

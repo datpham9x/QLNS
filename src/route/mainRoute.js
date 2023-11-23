@@ -24,6 +24,7 @@ let initWebRoutes = (app) => {
   router.get('/deleteStaff', homeController.putDeleteStaff);
   router.get('/cacl-workday', homeController.getCaclWorkday);
   router.post('/luu-cong', homeController.putEditWorkDay);
+  router.get('/search', homeController.getSearchByID);
 
 
   return app.use("/",router);

@@ -68,7 +68,8 @@ let getStaffManage = async (req, res) => {
     try {
         if (req.session.logged) {
             let staff = await db.Staff.findAll();
-            return res.render('staffmanage', { staff: staff });
+            const page = parseInt(req.query.page) || 1;
+            return res.render('staffmanage', { staff: staff, currentPage: page });
         } else {
             req.session.back = "staffmanage";
             res.redirect('login');
@@ -91,7 +92,8 @@ let postNewStaff = async (req, res) => {
     try {
         let allStaffs = await staffManageService.createNewStaff(req.body);
 
-        return res.render('staffmanage', {staff: allStaffs});
+        const page = parseInt(req.query.page) || 1;
+        return res.render('staffmanage', {staff: allStaffs, currentPage: page});
     } catch (e) {
         console.log(e)
     }
@@ -190,7 +192,8 @@ let putDeleteStaff = async (req, res) => {
         let userID = req.query.id;
         console.log(userID)
         let allStaffs = await staffManageService.deleteStaff(userID);
-        return res.render('staffmanage', { staff: allStaffs });
+        const page = parseInt(req.query.page) || 1;
+        return res.render('staffmanage', { staff: allStaffs, currentPage: page });
     } catch (e) {
         console.log(e)
 
@@ -205,6 +208,32 @@ let getSalary = async (req, res) => {
     return res.render('salary')
 }
 
+
+let getSearchByID = async (req, res) => {
+
+    let employeeId = req.query.employeeId;
+    try {
+
+        let result = await staffManageService.findOneStaff(employeeId);
+        if (result) {
+            res.json({
+                id: result.id,
+                ho_ten: result.ho_ten,
+                gioi_tinh: result.gioi_tinh,
+                tuoi: result.tuoi,
+                phong_ban :result.phong_ban,
+                dia_chi: result.dia_chi
+            });
+        } else {
+            res.json(null); // Không tìm thấy nhân viên
+        }
+
+    } catch (e) {
+        console.log(e)
+    }
+
+
+}
 
 
 /*Hàm tính số ngày trong tháng javascript*/
@@ -289,5 +318,6 @@ module.exports = {
     putDeleteStaff: putDeleteStaff,
     getSalary: getSalary,
     getCaclWorkday: getCaclWorkday,
-    putEditWorkDay: putEditWorkDay
+    putEditWorkDay: putEditWorkDay,
+    getSearchByID: getSearchByID
 }
