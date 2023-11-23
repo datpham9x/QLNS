@@ -4,7 +4,7 @@ const sequelize = new Sequelize(
     'root',
     '123abc!@#ABC',
     {
-        host: '192.168.9.138',
+        host: 'datpham94.ddns.net',
         dialect: 'mysql'
     }
 );
