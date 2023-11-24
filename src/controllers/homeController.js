@@ -50,12 +50,7 @@ let getDepartment = async (req, res) => {
 
         });
 
-        const page = parseInt(req.query.page) || 1; // Get the current page from the query parameter (default to 1 if not provided)
-        // const itemsPerPage = 2;
-        // const startIndex = (page - 1) * itemsPerPage;
-        // const endIndex = startIndex + itemsPerPage;
-        // const dataSubset = db.Staff.slice(startIndex, endIndex); // Subset of data for the current page
-
+        const page = parseInt(req.query.page) || 1; 
         return res.render('departments', { dsphongban, currentPage: page });
 
     } catch (e) {
@@ -166,7 +161,7 @@ let getEditStaff = async (req, res) => {
         console.log(userID)
         let staff = await staffManageService.findOneStaff(userID);
         console.log(staff);
-        return res.render('editStaff', { staff: staff });
+        return res.render('editStaff', { staff: staff, currentPage: page });
     } catch (e) {
         console.log(e)
     }
@@ -177,6 +172,7 @@ let putEditStaff = async (req, res) => {
     try {
         let staff = req.body;
         let allStaffs = await staffManageService.updateStaff(staff);
+        const page = parseInt(req.query.page) || 1;
         return res.render('staffmanage', { staff: allStaffs });
     } catch (e) {
         console.log(e)
