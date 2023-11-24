@@ -161,7 +161,7 @@ let getEditStaff = async (req, res) => {
         console.log(userID)
         let staff = await staffManageService.findOneStaff(userID);
         console.log(staff);
-        return res.render('editStaff', { staff: staff, currentPage: page });
+        return res.render('editStaff', { staff: staff });
     } catch (e) {
         console.log(e)
     }
@@ -173,7 +173,7 @@ let putEditStaff = async (req, res) => {
         let staff = req.body;
         let allStaffs = await staffManageService.updateStaff(staff);
         const page = parseInt(req.query.page) || 1;
-        return res.render('staffmanage', { staff: allStaffs });
+        return res.render('staffmanage', { staff: allStaffs, currentPage: page });
     } catch (e) {
         console.log(e)
 
